@@ -1,0 +1,433 @@
+/* Authentic Notebook-style CSS for StudyLink */
+
+:root {
+    --notebook-paper: #f9f7f4;
+    --notebook-line: #ddd8ce;
+    --notebook-margin: #ff6b6b;
+    --notebook-holes: #e8e5e0;
+    --notebook-blue: #2c5aa0;
+    --notebook-green: #27ae60;
+    --notebook-red: #e74c3c;
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --shadow-light: rgba(0,0,0,0.1);
+    --shadow-medium: rgba(0,0,0,0.2);
+}
+
+body {
+    background: #f0ede8;
+    font-family: 'Courier New', 'Monaco', monospace;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* Main notebook container */
+.notebook-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--notebook-paper);
+    box-shadow: 
+        0 0 20px var(--shadow-light),
+        inset 0 0 50px rgba(255,255,255,0.5);
+    position: relative;
+    min-height: 90vh;
+    border-radius: 0;
+}
+
+/* Notebook paper lines background */
+.notebook-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        /* Horizontal lines */
+        repeating-linear-gradient(
+            transparent 0px,
+            transparent 31px,
+            var(--notebook-line) 31px,
+            var(--notebook-line) 33px
+        ),
+        /* Left margin line */
+        linear-gradient(
+            90deg,
+            transparent 0px,
+            transparent 69px,
+            var(--notebook-margin) 69px,
+            var(--notebook-margin) 71px,
+            transparent 71px
+        );
+    background-size: 100% 34px, 100% 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Notebook holes */
+.notebook-container::after {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 60px;
+    bottom: 60px;
+    width: 8px;
+    background-image: 
+        repeating-linear-gradient(
+            transparent 0px,
+            transparent 50px,
+            var(--notebook-holes) 50px,
+            var(--notebook-holes) 58px
+        );
+    border-radius: 4px;
+    box-shadow: inset 0 0 3px var(--shadow-light);
+    z-index: 2;
+}
+
+.container {
+    position: relative;
+    z-index: 3;
+    padding: 40px 90px 40px 90px;
+}
+
+/* Header styling */
+.notebook-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-top: 20px;
+}
+
+.notebook-header h1 {
+    color: var(--text-primary);
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-decoration: underline;
+    text-decoration-color: var(--notebook-blue);
+}
+
+.notebook-header .lead {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+/* Section styling - looks like handwritten sections */
+.notebook-section {
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    text-decoration: underline;
+    text-decoration-color: var(--notebook-blue);
+    text-decoration-thickness: 2px;
+}
+
+/* Form styling */
+.form-control {
+    border: none;
+    border-bottom: 2px solid var(--notebook-blue);
+    border-radius: 0;
+    padding: 8px 12px;
+    background: transparent;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-bottom-color: var(--notebook-red);
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.btn {
+    border: 2px solid var(--notebook-blue);
+    border-radius: 6px;
+    padding: 10px 20px;
+    background: transparent;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 1rem;
+    color: var(--notebook-blue);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background: var(--notebook-blue);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+.btn-primary {
+    border-color: var(--notebook-blue);
+    color: var(--notebook-blue);
+}
+
+.btn-primary:hover {
+    background: var(--notebook-blue);
+    color: white;
+}
+
+.btn-success {
+    border-color: var(--notebook-green);
+    color: var(--notebook-green);
+}
+
+.btn-success:hover {
+    background: var(--notebook-green);
+    color: white;
+}
+
+.btn-outline-secondary {
+    border: 2px solid var(--notebook-line);
+    color: var(--text-secondary);
+    background: transparent;
+    border-radius: 10px;
+}
+
+.btn-outline-secondary:hover {
+    background: var(--text-secondary);
+    border-color: var(--text-secondary);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.btn-outline-primary {
+    border: 2px solid var(--notebook-blue);
+    color: var(--notebook-blue);
+    background: transparent;
+    border-radius: 10px;
+}
+
+.btn-outline-primary:hover {
+    background: var(--notebook-blue);
+    border-color: var(--notebook-blue);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.alert {
+    border: 2px solid;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    position: relative;
+}
+
+.alert-success {
+    background: rgba(39, 174, 96, 0.1);
+    border-color: var(--notebook-green);
+    color: var(--notebook-green);
+}
+
+.alert-danger {
+    background: rgba(231, 76, 60, 0.1);
+    border-color: var(--notebook-red);
+    color: var(--notebook-red);
+}
+
+.alert::before {
+    content: "NOTE:";
+    position: absolute;
+    top: -8px;
+    left: 15px;
+    background: var(--notebook-paper);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.copyable-alert {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copyable-alert:hover {
+    background: rgba(39, 174, 96, 0.2);
+    transform: translateY(-1px);
+}
+
+.copy-alert-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.copy-alert-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.copy-alert-btn.copied {
+    background: var(--notebook-green);
+    color: white;
+}
+
+.alert-content {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+/* List group styling */
+.list-group-item {
+    border: none;
+    border-bottom: 1px solid rgba(224, 230, 237, 0.5);
+    padding: 1.25rem;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background: rgba(74, 144, 226, 0.05);
+    transform: translateX(5px);
+}
+
+.list-group-item:last-child {
+    border-bottom: none;
+}
+
+/* Step numbers */
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--notebook-blue) 0%, var(--notebook-dark-blue) 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+/* Footer styling */
+.notebook-footer {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.notebook-footer .notebook-lines {
+    top: 0;
+    bottom: auto;
+}
+
+/* Code styling */
+code {
+    background: var(--paper-yellow);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    border: 1px solid #f1c40f;
+}
+
+/* Copy button feedback */
+.copy-btn.copied {
+    background: #27ae60;
+    color: white;
+    border-color: #27ae60;
+}
+
+/* Toast styling */
+.toast {
+    background: white;
+    border: none;
+    box-shadow: 0 4px 12px var(--notebook-shadow);
+    border-radius: 8px;
+}
+
+.toast-body {
+    color: #27ae60;
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .notebook-card {
+        margin-left: 20px;
+    }
+    
+    .notebook-header {
+        padding: 1rem 0;
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+    
+    .step-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Hover effects */
+.notebook-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 12px var(--notebook-shadow),
+        0 2px 4px var(--notebook-shadow);
+    transition: all 0.3s ease;
+}
+
+/* Loading animation */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Link styling */
+a {
+    color: var(--notebook-blue);
+    text-decoration: none;
+}
+
+a:hover {
+    color: #1e3d6f;
+    text-decoration: underline;
+}
+
+/* Icon adjustments */
+.feather {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+
+/* Text truncation for URLs */
+.text-truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
