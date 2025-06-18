@@ -17,8 +17,9 @@ db = client.get_database("StudyLinks")
 url_collection = db.url_mappings
 
 def generate_code(length=6):
-    characters = string.ascii_letters + string.digits
+    characters = string.ascii_uppercase
     return ''.join(random.choice(characters) for _ in range(length))
+
 
 def is_valid_url(url):
     try:
